@@ -151,6 +151,7 @@
 
 <script>
 export default {
+  name: 'VueDateTimePicker',
   props: {
     value: {
       type: Boolean,

@@ -1,15 +1,32 @@
 {
-  "name": "date-picker",
+  "name": "vue-datetime-picker",
   "version": "1.0.0",
-  "description": "A Vue.js project",
-  "author": "Tensho Chen <ctx@outlook.com>",
-  "private": true,
+  "description": "date/time-picker, 时间/日期选择器",
+  "author": "Tensho Chen",
+  "private": false,
   "scripts": {
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",
-    "build": "node build/build.js"
+    "build": "node build/build-demopage.js",
+    "build-npm": "node build/build-npm.js"
   },
+  "main": "dist/vue-datetime-picker.min.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ctxtub/vue-datetime-picker.git"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "keywords": [
+    "vue",
+    "picker",
+    "dateTime picker"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/ctxtub/vue-datetime-picker#readme",
   "dependencies": {
     "vue": "^2.5.2"
   },

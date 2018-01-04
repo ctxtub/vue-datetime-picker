@@ -1,6 +1,8 @@
-# date-picker
+# vue-datetime-picker
 
-> A Vue.js project
+> VUE时间日期选择器，当前版本样式基于单倍屏动态像素比
+
+[DEMO](https://www.ctxtub.com/demo/vue-picker/)
 
 ## Build Setup
 
