@@ -1,0 +1,63 @@
+body,html
+  line-height: 1
+  font-weight: 200
+  font-family: 'PingFang SC','STHeitiSC-Light','Helvetica-Light',arial,sans-serif
+  margin: 0
+  padding: 0
+
+.clearfix
+  &:after
+    display: block
+    content: "."
+    height: 0
+    line-height: 0
+    clear: both
+    visibility: hidden
+
+.texthidden
+  text-indent:-9999px
+
+
+.fscreen
+  position: absolute
+  left: 0
+  right: 0
+  bottom: 0
+  top: 0
+  overflow: hidden
+  background: #ecf0f3
+  .fscreen-content
+    position: absolute
+    left: 0
+    right: 0
+    bottom: 0
+    top: 0
+    overflow-x: hidden
+    overflow-y: auto
+
+.fpage
+  &::before
+    content: " "
+    position: absolute
+    left:0
+    right:0
+    top:0
+    bottom:0
+    background-color:#ecf0f3
+    z-index:-100
+  .fpage-content
+    background-color:#ecf0f3
+    overflow: hidden
+
+
+@media (-webkit-min-device-pixel-ratio: 1.5),(min-device-pixel-ratio: 1.5)
+  .border-1px
+    &::after
+      -webkit-transform: scaleY(0.7)
+      transform: scaleY(0.7)
+
+@media (-webkit-min-device-pixel-ratio: 2),(min-device-pixel-ratio: 2)
+  .border-1px
+    &::after
+      -webkit-transform: scaleY(0.5)
+      transform: scaleY(0.5)
