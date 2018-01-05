@@ -11,7 +11,7 @@
           <div class="picker-box-header-confirm" @click="submit">{{confirm}}</div>
         </div>
         <div class="picker-box-content">
-          <div class="picker-box-content-list">
+          <div class="picker-box-content-list" v-if="type === 'dateTime' || type === 'date'">
             <ul 
                 :class="{'is_dragging': yearState.dragging}" 
                 @touchstart="_onTouchStart('year', $event)" 
@@ -38,7 +38,7 @@
               <li></li>
             </ul>
           </div>
-          <div class="picker-box-content-list">
+          <div class="picker-box-content-list" v-if="type === 'dateTime' || type === 'date'">
             <ul 
                 :class="{'is_dragging': monthState.dragging}" 
                 @touchstart="_onTouchStart('month', $event)" 
@@ -63,7 +63,7 @@
               <li></li>
             </ul>
           </div>
-          <div class="picker-box-content-list">
+          <div class="picker-box-content-list" v-if="type === 'dateTime' || type === 'date'">
             <ul 
                 ref:area-list 
                 :class="{'is_dragging': dayState.dragging}" 
@@ -89,7 +89,7 @@
               <li></li>
             </ul>
           </div>
-          <div class="picker-box-content-list">
+          <div class="picker-box-content-list" v-if="type === 'dateTime' || type === 'time'">
             <ul 
                 :class="{'is_dragging': hourState.dragging}" 
                 @touchstart="_onTouchStart('hour', $event)" 
@@ -116,7 +116,7 @@
               <li></li>
             </ul>
           </div>
-          <div class="picker-box-content-list">
+          <div class="picker-box-content-list" v-if="type === 'dateTime' || type === 'time'">
             <ul 
                 :class="{'is_dragging': minuteState.dragging}" 
                 @touchstart="_onTouchStart('minute', $event)" 
@@ -157,9 +157,9 @@ export default {
       type: Boolean,
       default: false
     },
-    propsShow: {
-      type: Boolean,
-      default: false
+    type: {
+      type: String,
+      default: 'dateTime'
     },
     transToNow: {
       type: Boolean,
@@ -296,7 +296,7 @@ export default {
       }
 
       if (this.firstShow) {
-        this.transToSetDay()
+        this.transToSetDay(300)
         this.firstShow = false
       }
     }
@@ -461,7 +461,7 @@ export default {
       minuteState.selectedId = curDate.getMinutes() < 10 ? '0' + curDate.getMinutes() : curDate.getMinutes()
 
       if (this.value) {
-        this.transToSetDay()
+        this.transToSetDay(300)
         this.firstShow = false
       }
     },
@@ -488,11 +488,11 @@ export default {
       minuteState.selectedId = '00'
 
       if (this.value) {
-        this.transToSetDay()
+        this.transToSetDay(300)
         this.firstShow = false
       }
     },
-    transToSetDay () {
+    transToSetDay (delay) {
       const yearState = this.yearState
       const monthState = this.monthState
       const dayState = this.dayState
@@ -536,16 +536,33 @@ export default {
             }
           }
           minuteState.translateY = -height * minuteState.index
-        }, 300)
+        }, !delay ? 0 : delay)
       })
     },
     submit () {
-      this.result = {
-        'year': this.yearState.data[this.yearState.index],
-        'month': this.monthState.data[this.monthState.index],
-        'day': this.dayState.data[this.dayState.index],
-        'hour': this.hourState.data[this.hourState.index],
-        'minute': this.minuteState.data[this.minuteState.index]
+      switch (this.type) {
+        case 'dateTime':
+          this.result = {
+            'year': this.yearState.data[this.yearState.index],
+            'month': this.monthState.data[this.monthState.index],
+            'day': this.dayState.data[this.dayState.index],
+            'hour': this.hourState.data[this.hourState.index],
+            'minute': this.minuteState.data[this.minuteState.index]
+          }
+          break
+        case 'date':
+          this.result = {
+            'year': this.yearState.data[this.yearState.index],
+            'month': this.monthState.data[this.monthState.index],
+            'day': this.dayState.data[this.dayState.index]
+          }
+          break
+        case 'time':
+          this.result = {
+            'hour': this.hourState.data[this.hourState.index],
+            'minute': this.minuteState.data[this.minuteState.index]
+          }
+          break
       }
       this.show = false
     },
@@ -682,6 +699,7 @@ export default {
     color #ff5657
     font-size 18px
   .picker-box-content
+    display flex
     width 100%
     margin 0 auto
     background #fff
@@ -689,8 +707,7 @@ export default {
     height cal(225)
     overflow hidden
   .picker-box-content-list
-    float left
-    width 20%
+    flex 1 1 0%
     text-align center
     ul
       margin 0
