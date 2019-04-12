@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import DateTimePicker from 'components/dateTimePicker/DateTimePicker'
+import DateTimePicker from '@/components/DateTimePicker'
 
 export default {
   name: 'app',
@@ -145,7 +145,7 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-@import 'common/stylus/mixin'
+@import 'assets/stylus/mixin'
 html,body
   margin 0
   padding 0

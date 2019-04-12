@@ -288,7 +288,7 @@ export default {
     value (newVal) {
       this.show = newVal
     },
-    show (newVal) {
+    show () {
       this.$emit('input', this.show)
 
       if (this.result) {
@@ -645,7 +645,7 @@ export default {
         e.preventDefault()
       }
     },
-    _onTouchEnd (e) {
+    _onTouchEnd () {
       let target = this.target
       let thisData = this[target + 'State']
       thisData.dragging = false
@@ -663,7 +663,7 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-@import '../../common/stylus/mixin'
+@import '../assets/stylus/mixin'
 
 .datepicker
   .picker-box-bg
