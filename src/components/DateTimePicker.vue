@@ -1,10 +1,10 @@
 <template>
-  <div class="datepicker" @touchmove.prevent :value="value">
+  <div class="datepicker" @touchmove.prevent @mousewheel.prevent :value="value">
     <transition name="fade" mode="out-in">
-      <div class="picker-box-bg" v-show="show" @click="show = false" @touchmove="_stopDef" @mousewheel="_stopDef"></div>
+      <div class="picker-box-bg" v-show="show" @click="show = false"></div>
     </transition>
     <transition name="select">
-      <div class="picker-box" v-show="show" @mousewheel="_stopDef">
+      <div class="picker-box" v-show="show">
         <div class="picker-box-header">
           <div class="picker-box-header-cancle" @click="show = false">{{cancel}}</div>
           {{title}}
@@ -641,9 +641,6 @@ export default {
       let thisData = this[target + 'State']
       this.delta = this._getTouchPos(e) - thisData.startPos
       thisData.translateY = thisData.startTranslateY + this.delta
-      if (Math.abs(this.delta) > 0) {
-        e.preventDefault()
-      }
     },
     _onTouchEnd () {
       let target = this.target
@@ -654,9 +651,6 @@ export default {
       document.removeEventListener('touchend', this._onTouchEnd)
       document.removeEventListener('mousemove', this._onTouchMove)
       document.removeEventListener('mouseup', this._onTouchEnd)
-    },
-    _stopDef (e) {
-      e.preventDefault()
     }
   }
 }
