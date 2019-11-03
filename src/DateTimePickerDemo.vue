@@ -1,11 +1,12 @@
 <template>
   <div id="app">
+    
     <div class="intro">默认样式：</div>
     <div class="button-wrap" @click="showDateTimePicker">
       <div class="tips">点击弹出 日期时间选择器</div>
       <div class="result">当前值：{{dateTimePickerResult}}</div>
     </div>
-    <DateTimePicker
+    <vue-date-time-picker
       v-model="dateTimePickerIsShow" 
       @syncResult="syncDateTimePicker"/>
     
@@ -14,7 +15,7 @@
       <div class="tips">点击弹出 日期时间选择器（自定义）</div>
       <div class="result">当前值：{{dateTimePickerResult2}}</div>
     </div>
-    <DateTimePicker
+    <vue-date-time-picker
       v-model="dateTimePickerIsShow2" 
       title="Custom Title"
       confirm="Confirm"
@@ -35,13 +36,12 @@
       :endDay="endTime.day"
       @syncResult="syncDateTimePicker2"/>
 
-
     <div class="intro">日期选择器、初始化滚动到当前日期：</div>
     <div class="button-wrap" @click="showDateTimePicker3">
       <div class="tips">点击弹出 日期选择器（自定义）</div>
       <div class="result">当前值：{{dateTimePickerResult3}}</div>
     </div>
-    <DateTimePicker
+    <vue-date-time-picker
       type="date"
       :transToNow="true"
       v-model="dateTimePickerIsShow3" 
@@ -52,7 +52,7 @@
       <div class="tips">点击弹出 时间选择器（自定义）</div>
       <div class="result">当前值：{{dateTimePickerResult4}}</div>
     </div>
-    <DateTimePicker
+    <vue-date-time-picker
       type="time"
       v-model="dateTimePickerIsShow4" 
       @syncResult="syncDateTimePicker4"/>
@@ -61,10 +61,7 @@
 </template>
 
 <script>
-import DateTimePicker from '@/components/DateTimePicker'
-
 export default {
-  name: 'app',
   data () {
     return {
       dateTimePickerIsShow: false,
@@ -137,9 +134,6 @@ export default {
     syncDateTimePicker4 (result) {
       this.dateTimePickerResult4 = result.hour + ':' + result.minute
     }
-  },
-  components: {
-    DateTimePicker
   }
 }
 </script>

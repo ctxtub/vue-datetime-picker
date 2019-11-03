@@ -26,15 +26,6 @@ module.exports = {
     loaderOptions: {}
   },
   transpileDependencies: [],
-  chainWebpack: config => {
-    // 去掉输出模板的压缩
-    Object.keys(PAGES).forEach(page => {
-      config.plugin(`html-${page}`).tap((args) => {
-        args[0].minify = false
-        return args
-      })
-    })
-  },
   configureWebpack: {
     resolve: {
       alias: {}
