@@ -58,11 +58,12 @@
    ```
 
 3. 项目中引入组件
+
    将dist目录下，`dateTimePicker.umd.js`  & `dateTimePicker.css`引入项目。
 
 4. 挂载组件
 
-  `main.js`入口文件中`Vue.install(..)`挂载 或者 `.vue`文件中`components`中引入。
+    `main.js`入口文件中`Vue.install(..)`挂载 或者 `.vue`文件中`components`中引入。
 
 
 
